@@ -1,6 +1,7 @@
 package com.artronics.satrapi.services;
 
 import com.artronics.satrapi.TestContextConfiguration;
+import com.artronics.satrapi.entities.DeviceConnection;
 import com.artronics.satrapi.entities.SdwnController;
 import com.artronics.satrapi.entities.SdwnNetwork;
 import com.artronics.satrapi.repositories.SdwnNetworkRepo;
@@ -24,6 +25,9 @@ public class SdwnControllerServiceTest
     static final String someIp = "123.31.3.6";
     @Autowired
     SdwnControllerService controllerService;
+
+    @Autowired
+    DeviceConnectionService connectionService;
 
     @Autowired
     SdwnNetworkRepo networkRepo;
@@ -63,17 +67,38 @@ public class SdwnControllerServiceTest
         assertThat(controller.getSdwnNetwork().getIp(),equalTo(someIp));
     }
 
-    private SdwnController createController()
+    @Test
+    public void it_should_EAGER_ly_load_DeviceConnection(){
+        SdwnController controller = persistController();
+
+//        assertNotNull(controller.getDeviceConnection());
+    }
+
+    private static SdwnController createController()
     {
         return new SdwnController();
     }
+    private static SdwnNetwork createNetwork(){
+        return new SdwnNetwork(someIp);
+    }
+    private static DeviceConnection createConnection(String str){
+        return new DeviceConnection(str);
+    }
 
     private SdwnController persistController(){
-        SdwnNetwork sdwnNetwork = new SdwnNetwork(someIp);
-        networkRepo.save(sdwnNetwork);
+        SdwnNetwork sdwnNetwork = createNetwork();
+        DeviceConnection con = createConnection("foo");
         SdwnController controller = createController();
 
+        networkRepo.save(sdwnNetwork);
+
         controller.setSdwnNetwork(sdwnNetwork);
-        return controllerService.save(controller);
+        controller= controllerService.save(controller);
+
+
+        con.setSdwnController(controller);
+        connectionService.save(con);
+
+        return controller;
     }
 }

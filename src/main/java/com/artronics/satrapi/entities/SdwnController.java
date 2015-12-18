@@ -12,6 +12,7 @@ public class SdwnController
     protected String description;
 
     protected SdwnNetwork sdwnNetwork;
+    protected DeviceConnection deviceConnection;
 
     protected Date created;
     protected Date updated;
@@ -39,6 +40,18 @@ public class SdwnController
     public void setSdwnNetwork(SdwnNetwork sdwnNetwork)
     {
         this.sdwnNetwork = sdwnNetwork;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "sdwnController",
+            cascade = CascadeType.ALL)
+    public DeviceConnection getDeviceConnection()
+    {
+        return deviceConnection;
+    }
+
+    public void setDeviceConnection(DeviceConnection deviceConnection)
+    {
+        this.deviceConnection = deviceConnection;
     }
 
     @Column(name = "description")
