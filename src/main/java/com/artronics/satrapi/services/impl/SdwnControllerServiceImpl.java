@@ -20,4 +20,16 @@ public class SdwnControllerServiceImpl implements SdwnControllerService
     {
         return controllerRepo.save(controller);
     }
+
+    @Override
+    public SdwnController findOne(Long id)
+    {
+        return controllerRepo.findOne(id);
+    }
+
+    @Override
+    public SdwnController findByNetwork(Long networkId, Long id)
+    {
+        return controllerRepo.findByNetwork(networkId,id);
+    }
 }

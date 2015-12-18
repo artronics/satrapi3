@@ -7,6 +7,8 @@ import java.util.Date;
 @Table(name = "networks")
 public class SdwnNetwork
 {
+    private  Long id;
+
     protected String ip;
 
     protected Date created;
@@ -22,6 +24,18 @@ public class SdwnNetwork
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",nullable = false,unique = true)
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
     @Column(name = "ip",nullable = false,unique = true)
     public String getIp()
     {
