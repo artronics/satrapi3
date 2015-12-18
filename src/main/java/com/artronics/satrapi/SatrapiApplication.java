@@ -31,7 +31,7 @@ public class SatrapiApplication implements
     public void onApplicationEvent
             (ContextRefreshedEvent contextRefreshedEvent)
     {
-
+        initializer.initSdwnNetwork();
     }
 
     @Override

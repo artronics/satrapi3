@@ -13,6 +13,11 @@ public class SdwnNetwork
     protected Date created;
     protected Date updated;
 
+    public SdwnNetwork(String ip)
+    {
+        this.ip = ip;
+    }
+
     @Id
     @Column(name = "ip",nullable = false,unique = true)
     public String getIp()
@@ -23,17 +28,6 @@ public class SdwnNetwork
     public void setIp(String ip)
     {
         this.ip = ip;
-    }
-
-    @Column(name = "description")
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
     }
 
     @PrePersist
