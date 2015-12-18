@@ -13,6 +13,10 @@ public class SdwnNetwork
     protected Date created;
     protected Date updated;
 
+    public SdwnNetwork()
+    {
+    }
+
     public SdwnNetwork(String ip)
     {
         this.ip = ip;
