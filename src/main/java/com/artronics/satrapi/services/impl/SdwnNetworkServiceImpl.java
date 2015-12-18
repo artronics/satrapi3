@@ -18,6 +18,12 @@ public class SdwnNetworkServiceImpl implements SdwnNetworkService
     @Override
     public SdwnNetwork save(SdwnNetwork network)
     {
-        return null;
+        return networkRepo.save(network);
+    }
+
+    @Override
+    public SdwnNetwork findOne(String ip)
+    {
+        return networkRepo.findOne(ip);
     }
 }
