@@ -9,6 +9,8 @@ public class SdwnController
 {
     private Long id;
 
+    private Long sinkAddress;
+
     protected String description;
 
     protected SdwnNetwork sdwnNetwork;
@@ -52,6 +54,17 @@ public class SdwnController
     public void setDeviceConnection(DeviceConnection deviceConnection)
     {
         this.deviceConnection = deviceConnection;
+    }
+
+    @Column(name = "sink_add",nullable = false)
+    public Long getSinkAddress()
+    {
+        return sinkAddress;
+    }
+
+    public void setSinkAddress(Long sinkAddress)
+    {
+        this.sinkAddress = sinkAddress;
     }
 
     @Column(name = "description")
