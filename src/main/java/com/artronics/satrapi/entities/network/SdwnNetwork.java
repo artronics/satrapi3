@@ -1,16 +1,20 @@
 package com.artronics.satrapi.entities.network;
 
-import org.apache.log4j.Logger;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.beans.Transient;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name = "network")
 public class SdwnNetwork
 {
-    private String ip;
+    protected String ip;
+    protected String description;
 
+    protected Date created;
+    protected Date updated;
+
+    @Id
+    @Column(name = "ip",nullable = false,unique = true)
     public String getIp()
     {
         return ip;
@@ -20,4 +24,28 @@ public class SdwnNetwork
     {
         this.ip = ip;
     }
+
+    @Column(name = "description")
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    @PrePersist
+    protected void onCreate()
+    {
+        created = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate()
+    {
+        updated = new Date();
+    }
+
 }
