@@ -1,6 +1,6 @@
 package com.artronics.satrapi.services.impl;
 
-import com.artronics.satrapi.entities.network.SdwnNetwork;
+import com.artronics.satrapi.entities.SdwnNetwork;
 import com.artronics.satrapi.repositories.SdwnNetworkRepo;
 import com.artronics.satrapi.services.SdwnNetworkService;
 import org.apache.log4j.Logger;

@@ -1,6 +1,6 @@
 package com.artronics.satrapi.services;
 
-import com.artronics.satrapi.entities.network.SdwnNetwork;
+import com.artronics.satrapi.entities.SdwnNetwork;
 
 public interface SdwnNetworkService
 {
