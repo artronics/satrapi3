@@ -15,6 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.artronics.satrapi.helper.CreateEntities.createCtrl;
+import static com.artronics.satrapi.helper.CreateEntities.createNet;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestContextConfiguration.class})
 public class RepoBaseTest
@@ -85,11 +88,11 @@ public class RepoBaseTest
 
     protected SdwnNetwork persisControllers(int num, String ip)
     {
-        SdwnNetwork network = new SdwnNetwork(ip);
+        SdwnNetwork network = createNet(ip);
 
         List<SdwnController> controllers = new ArrayList<>();
         for (int i = 0; i < num; i++) {
-            SdwnController e = new SdwnController();
+            SdwnController e = createCtrl();
             e.setSdwnNetwork(network);
             e.setSinkAddress(4L);
             controllers.add(e);
@@ -107,25 +110,4 @@ public class RepoBaseTest
         return networkRepo.save(net);
     }
 
-    protected SdwnNetwork createNet(String ip)
-    {
-        SdwnNetwork net = new SdwnNetwork(ip);
-
-        return net;
-    }
-
-    protected DeviceConnection createDevCon(String conStr)
-    {
-        DeviceConnection dev = new DeviceConnection(conStr);
-
-        return dev;
-    }
-
-    protected SdwnController createCtrl()
-    {
-        SdwnController con = new SdwnController();
-        con.setSinkAddress(43L);
-
-        return con;
-    }
 }
