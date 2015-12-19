@@ -1,13 +1,19 @@
 package com.artronics.satrapi.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "networks")
 public class SdwnNetwork
 {
     private  Long id;
+
+    private List<SdwnController> controllers;
 
     protected String ip;
 
@@ -34,6 +40,19 @@ public class SdwnNetwork
     public void setId(Long id)
     {
         this.id = id;
+    }
+
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    public List<SdwnController> getControllers()
+    {
+        return controllers;
+    }
+
+    public void setControllers(
+            List<SdwnController> controllers)
+    {
+        this.controllers = controllers;
     }
 
     @Column(name = "ip",nullable = false,unique = true)

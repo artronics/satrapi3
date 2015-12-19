@@ -32,7 +32,7 @@ public class SdwnController
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "network_id", nullable = false)
     public SdwnNetwork getSdwnNetwork()
     {
