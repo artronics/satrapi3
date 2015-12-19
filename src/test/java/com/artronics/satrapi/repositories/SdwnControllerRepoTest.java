@@ -2,7 +2,6 @@ package com.artronics.satrapi.repositories;
 
 import com.artronics.satrapi.entities.SdwnController;
 import com.artronics.satrapi.entities.SdwnNetwork;
-import com.artronics.satrapi.helper.RepoBaseTest;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;

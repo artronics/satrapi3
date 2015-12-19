@@ -1,12 +1,9 @@
-package com.artronics.satrapi.helper;
+package com.artronics.satrapi.repositories;
 
 import com.artronics.satrapi.TestContextConfiguration;
 import com.artronics.satrapi.entities.DeviceConnection;
 import com.artronics.satrapi.entities.SdwnController;
 import com.artronics.satrapi.entities.SdwnNetwork;
-import com.artronics.satrapi.repositories.DeviceConnectionRepo;
-import com.artronics.satrapi.repositories.SdwnControllerRepo;
-import com.artronics.satrapi.repositories.SdwnNetworkRepo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
