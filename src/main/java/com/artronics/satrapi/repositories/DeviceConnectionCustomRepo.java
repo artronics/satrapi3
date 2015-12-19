@@ -4,5 +4,5 @@ import com.artronics.satrapi.entities.DeviceConnection;
 
 public interface DeviceConnectionCustomRepo
 {
-    DeviceConnection findByController(Long controllerId, Long id);
+    DeviceConnection findByPath(Long networkId, Long controllerId, Long id);
 }

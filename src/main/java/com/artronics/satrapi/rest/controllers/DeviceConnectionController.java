@@ -24,7 +24,6 @@ public class DeviceConnectionController
                                             @PathVariable Long controllerId,
                                             @PathVariable Long id){
 
-        connectionService.findByController(controllerId,id);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

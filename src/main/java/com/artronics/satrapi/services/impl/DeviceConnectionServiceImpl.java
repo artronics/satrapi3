@@ -20,10 +20,4 @@ public class DeviceConnectionServiceImpl implements DeviceConnectionService
     {
         return connectionRepo.save(connection);
     }
-
-    @Override
-    public DeviceConnection findByController(Long controllerId, Long id)
-    {
-        return connectionRepo.findByController(controllerId,id);
-    }
 }

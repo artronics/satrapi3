@@ -5,6 +5,4 @@ import com.artronics.satrapi.entities.DeviceConnection;
 public interface DeviceConnectionService
 {
     DeviceConnection save(DeviceConnection connection);
-
-    DeviceConnection findByController(Long controllerId, Long id);
 }

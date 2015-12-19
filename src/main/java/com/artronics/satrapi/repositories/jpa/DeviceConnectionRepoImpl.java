@@ -23,7 +23,8 @@ public class DeviceConnectionRepoImpl implements DeviceConnectionCustomRepo
     SdwnControllerRepo controllerRepo;
 
     @Override
-    public DeviceConnection findByController(Long controllerId, Long id)
+    //TODO change name to findByController(SdwnController,Long id)
+    public DeviceConnection findByPath(Long networkId, Long controllerId, Long id)
     {
         SdwnController controller = controllerRepo.findOne(controllerId);
         if (controller == null) {
