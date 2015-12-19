@@ -31,7 +31,9 @@ public class SdwnControllerResAsm extends
         res.setCreated(sdwnController.getCreated());
         res.setUpdated(sdwnController.getUpdated());
 
-        res.add(linkTo(SdwnControllerController.class)
+        Long sdwnNetId = sdwnController.getSdwnNetwork().getId();
+
+        res.add(linkTo(SdwnControllerController.class,sdwnNetId)
                         .slash(sdwnController.getId()).withSelfRel());
 
         return res;

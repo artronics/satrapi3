@@ -42,14 +42,16 @@ public class SdwnControllerControllerTest
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
         sdwnNetwork = new SdwnNetwork(OUR_IP);
+        sdwnNetwork.setId(1L);
         sdwnController = new SdwnController();
         sdwnController.setId(1L);
+        sdwnController.setSdwnNetwork(sdwnNetwork);
     }
 
     @Test
     public void it_should_give_SdwnController() throws Exception
     {
-        when(controllerService.findOne(1L)).thenReturn(sdwnController);
+        when(controllerService.findByNetwork(1L,1L)).thenReturn(sdwnController);
 
         mockMvc.perform(get(URI+1))
                .andDo(print())
