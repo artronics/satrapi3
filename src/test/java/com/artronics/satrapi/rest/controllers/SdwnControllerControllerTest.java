@@ -52,13 +52,37 @@ public class SdwnControllerControllerTest
     public void it_should_give_SdwnController() throws Exception
     {
         when(controllerService.findByNetwork(1L,1L)).thenReturn(sdwnController);
+        String uri = buildUri(1L, 1L);
 
-        mockMvc.perform(get(URI+1))
+        mockMvc.perform(get(uri))
                .andDo(print())
                .andExpect(jsonPath("$.rid",is(1)))
                .andExpect(jsonPath("$.links[*].href",hasItem(
                        endsWith("networks/1/controllers/1"))))
                .andExpect(status().isOk())
         ;
+    }
+
+    @Test
+    public void throw_exp_if_either_controller_or_network_does_not_exist() throws Exception
+    {
+        when(controllerService.findByNetwork(1L,11L)).thenReturn(null);
+        String uri = buildUri(1L,11L);
+
+        mockMvc.perform(get(uri)).andExpect(status().isNotFound());
+
+        when(controllerService.findByNetwork(123L,1L)).thenReturn(null);
+        uri = buildUri(123L,121L);
+
+        mockMvc.perform(get(uri)).andExpect(status().isNotFound());
+
+        when(controllerService.findByNetwork(123L,121L)).thenReturn(null);
+        uri = buildUri(123L,121L);
+
+        mockMvc.perform(get(uri)).andExpect(status().isNotFound());
+    }
+
+    private static String buildUri(Long netId,Long ctrlId){
+        return "/rest/networks/"+netId.toString()+"/controllers/"+ctrlId.toString();
     }
 }

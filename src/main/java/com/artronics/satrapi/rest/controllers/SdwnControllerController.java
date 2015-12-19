@@ -1,6 +1,7 @@
 package com.artronics.satrapi.rest.controllers;
 
 import com.artronics.satrapi.entities.SdwnController;
+import com.artronics.satrapi.rest.exceptions.NotFoundException;
 import com.artronics.satrapi.rest.resources.SdwnControllerRes;
 import com.artronics.satrapi.rest.resources.asm.SdwnControllerResAsm;
 import com.artronics.satrapi.services.SdwnControllerService;
@@ -26,6 +27,10 @@ public class SdwnControllerController
             (@PathVariable Long networkId,@PathVariable Long id){
 
         SdwnController controller= controllerService.findByNetwork(networkId,id);
+        if (controller == null) {
+            throw new NotFoundException("There is no such entities. Either SdwnNetwork or SdwnController");
+        }
+
         SdwnControllerRes res = new SdwnControllerResAsm().toResource(controller);
 
         return new ResponseEntity<>(res,HttpStatus.OK);
