@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static com.artronics.satrapi.helper.ControllerHelper.buildUri;
 import static com.artronics.satrapi.helper.TestConstants.OUR_IP;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
@@ -67,22 +68,18 @@ public class SdwnControllerControllerTest
     public void throw_exp_if_either_controller_or_network_does_not_exist() throws Exception
     {
         when(controllerService.findByNetwork(1L,11L)).thenReturn(null);
-        String uri = buildUri(1L,11L);
+        String uri = buildUri(1L, 11L);
 
         mockMvc.perform(get(uri)).andExpect(status().isNotFound());
 
         when(controllerService.findByNetwork(123L,1L)).thenReturn(null);
-        uri = buildUri(123L,121L);
+        uri = buildUri(123L, 121L);
 
         mockMvc.perform(get(uri)).andExpect(status().isNotFound());
 
         when(controllerService.findByNetwork(123L,121L)).thenReturn(null);
-        uri = buildUri(123L,121L);
+        uri = buildUri(123L, 121L);
 
         mockMvc.perform(get(uri)).andExpect(status().isNotFound());
-    }
-
-    private static String buildUri(Long netId,Long ctrlId){
-        return "/rest/networks/"+netId.toString()+"/controllers/"+ctrlId.toString();
     }
 }
