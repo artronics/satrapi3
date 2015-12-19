@@ -12,8 +12,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 import static com.artronics.satrapi.helper.TestConstants.OUR_IP;
 import static org.mockito.Mockito.*;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = {TestContextConfiguration.class})
 public class NetworkInitializerImplTest
 {
     @InjectMocks
@@ -23,11 +21,12 @@ public class NetworkInitializerImplTest
     SdwnNetworkService networkService;
 
     SdwnNetwork sdwnNetwork=new SdwnNetwork(OUR_IP);
+
     @Before
     public void setUp() throws Exception
     {
-
         MockitoAnnotations.initMocks(this);
+
         ReflectionTestUtils.setField(initializer, "ip", OUR_IP);
     }
 
