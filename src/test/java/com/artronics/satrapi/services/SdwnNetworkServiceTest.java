@@ -30,6 +30,6 @@ public class SdwnNetworkServiceTest
             " SdwnNetwork is persisted if there is no one")
     @Test
     public void it_should_return_null_when_there_is_no_network(){
-        assertNull(networkService.findOne(OUR_IP));
+        assertNull(networkService.findByIp(OUR_IP));
     }
 }

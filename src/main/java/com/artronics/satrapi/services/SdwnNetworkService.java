@@ -6,5 +6,5 @@ public interface SdwnNetworkService
 {
     SdwnNetwork save(SdwnNetwork network);
 
-    SdwnNetwork findOne(String ip);
+    SdwnNetwork findByIp(String ip);
 }

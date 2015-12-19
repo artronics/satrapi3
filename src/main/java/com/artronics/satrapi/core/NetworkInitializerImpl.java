@@ -23,10 +23,12 @@ public class NetworkInitializerImpl implements NetworkInitializer
     @Override
     public void initSdwnNetwork()
     {
-        log.info("Initializing SDWN Network with IP: "+ip);
-        sdwnNetwork= networkService.findOne(ip);
+        log.info("Initializing SDWN Network with IP: " + ip);
+        sdwnNetwork = networkService.findByIp(ip);
+
         if (sdwnNetwork == null) {
             log.debug("There is no SDWN-Network on data base. Create on.");
+
             sdwnNetwork = new SdwnNetwork(ip);
             networkService.save(sdwnNetwork);
         }

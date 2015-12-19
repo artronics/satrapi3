@@ -22,8 +22,8 @@ public class SdwnNetworkServiceImpl implements SdwnNetworkService
     }
 
     @Override
-    public SdwnNetwork findOne(String ip)
+    public SdwnNetwork findByIp(String ip)
     {
-        return networkRepo.findOne(ip);
+        return networkRepo.findByIp(ip);
     }
 }

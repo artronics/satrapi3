@@ -6,8 +6,10 @@ import com.artronics.satrapi.rest.resources.SdwnControllerRes;
 import org.apache.log4j.Logger;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+
 public class SdwnControllerResAsm extends
-                                  ResourceAssemblerSupport<SdwnController,SdwnControllerRes>
+                                  ResourceAssemblerSupport<SdwnController, SdwnControllerRes>
 {
     private final static Logger log = Logger.getLogger(SdwnControllerResAsm.class);
 
@@ -28,6 +30,9 @@ public class SdwnControllerResAsm extends
 
         res.setCreated(sdwnController.getCreated());
         res.setUpdated(sdwnController.getUpdated());
+
+        res.add(linkTo(SdwnControllerController.class)
+                        .slash(sdwnController.getId()).withSelfRel());
 
         return res;
     }

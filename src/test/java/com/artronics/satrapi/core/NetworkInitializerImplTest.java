@@ -34,15 +34,15 @@ public class NetworkInitializerImplTest
     @Test
     public void it_should_look_for_a_SdwnNetwork_with_ourIp(){
         initializer.initSdwnNetwork();
-        verify(networkService).findOne(OUR_IP);
+        verify(networkService).findByIp(OUR_IP);
     }
 
     @Test
     public void it_should_create_a_sdwnNetwork_if_there_is_no_one(){
         initializer.initSdwnNetwork();
-        when(networkService.findOne(OUR_IP)).thenReturn(null);
+        when(networkService.findByIp(OUR_IP)).thenReturn(null);
 
-        verify(networkService,times(1)).findOne(OUR_IP);
+        verify(networkService,times(1)).findByIp(OUR_IP);
         verify(networkService,times(1)).save(any(SdwnNetwork.class));
         verifyNoMoreInteractions(networkService);
     }
