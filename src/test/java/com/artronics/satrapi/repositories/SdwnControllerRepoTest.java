@@ -47,7 +47,7 @@ public class SdwnControllerRepoTest extends RepoBaseTest
 
     @Test
     public void findByNetwork_if_there_is_no_network_return_null(){
-        SdwnController persistedCnt = controllerRepo.findByNetwork(10L,persistedCtrl.getId());
+        SdwnController persistedCnt = controllerRepo.findByNetwork(10345L,persistedCtrl.getId());
 
         assertNull(persistedCnt);
     }
