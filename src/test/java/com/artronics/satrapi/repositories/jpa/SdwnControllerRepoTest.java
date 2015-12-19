@@ -12,8 +12,13 @@ import static org.junit.Assert.*;
 public class SdwnControllerRepoTest extends RepoBaseTest
 {
     @Test
+    public void persist_a_controller(){
+
+    }
+
+    @Test
     public void it_should_EAGER_ly_load_sdwnNetwork(){
-        SdwnController ctrl = aPersistedCtrl;
+        SdwnController ctrl = persistedCtrl;
 
         assertNotNull(ctrl.getSdwnNetwork());
         assertThat(ctrl.getSdwnNetwork().getIp(),equalTo(someIp));
@@ -21,7 +26,7 @@ public class SdwnControllerRepoTest extends RepoBaseTest
 
     @Test
     public void test_findByNetwork_it_should_return_associated_SdwnNetwork(){
-        SdwnController persistedCnt = controllerRepo.findByNetwork(netId,aPersistedCtrl.getId());
+        SdwnController persistedCnt = controllerRepo.findByNetwork(netId,persistedCtrl.getId());
 
         assertNotNull(persistedCnt.getSdwnNetwork());
         assertThat(persistedCnt.getSdwnNetwork().getIp(),equalTo(someIp));
@@ -43,7 +48,7 @@ public class SdwnControllerRepoTest extends RepoBaseTest
 
     @Test
     public void findByNetwork_if_there_is_no_network_return_null(){
-        SdwnController persistedCnt = controllerRepo.findByNetwork(10L,aPersistedCtrl.getId());
+        SdwnController persistedCnt = controllerRepo.findByNetwork(10L,persistedCtrl.getId());
 
         assertNull(persistedCnt);
     }
@@ -54,8 +59,15 @@ public class SdwnControllerRepoTest extends RepoBaseTest
         networkRepo.save(otherNet);
         Long otherNetId = otherNet.getId();
 
-        SdwnController persistedCnt = controllerRepo.findByNetwork(otherNetId,aPersistedCtrl.getId());
+        SdwnController persistedCnt = controllerRepo.findByNetwork(otherNetId,persistedCtrl.getId());
 
         assertNull(persistedCnt);
+    }
+    /*
+        RELATIONSHIP
+     */
+    @Test
+    public void it_should_EAGER_ly_fetch_DeviceConnection(){
+
     }
 }

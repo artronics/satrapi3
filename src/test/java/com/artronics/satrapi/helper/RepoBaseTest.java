@@ -1,6 +1,7 @@
 package com.artronics.satrapi.helper;
 
 import com.artronics.satrapi.TestContextConfiguration;
+import com.artronics.satrapi.entities.DeviceConnection;
 import com.artronics.satrapi.entities.SdwnController;
 import com.artronics.satrapi.entities.SdwnNetwork;
 import com.artronics.satrapi.repositories.DeviceConnectionRepo;
@@ -8,6 +9,7 @@ import com.artronics.satrapi.repositories.SdwnControllerRepo;
 import com.artronics.satrapi.repositories.SdwnNetworkRepo;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,44 +31,63 @@ public class RepoBaseTest
     @Autowired
     protected DeviceConnectionRepo connectionRepo;
 
-    protected SdwnController aPersistedCtrl;
+    //net that is persisted with someIp
+    protected String someIp = "12.34.55.234";
     protected SdwnNetwork persistedNet;
-
-    protected String someIp ="12.34.55.234";
-    protected int numOfCtrl = 5;
     protected Long netId;
 
+    //first controller which is associated with persistedNet
+    protected SdwnController persistedCtrl;
+    protected Long ctrlId;
+
+    //it is associated with persistedCtrl
+    protected DeviceConnection persistedDev;
+    //protected Long devId;
+
+    protected int numOfCtrl = 5;
+
     /**
-     * Before each test we persist a SdwnNetwork with ip address of someIp,
-     * netId is the Id of this network.
-     * For this entity we persist numOfCtrl.
-     * CAUTION: Remember during Spring Container inside event we persist a SdwnNetwork
-     * associated with this machine. see NetworkInitializer
+     * Before each test we persist a SdwnNetwork with ip address of someIp, netId is the Id of this
+     * network. For this entity we persist numOfCtrl. persistedCtrl is the first SdwnController
+     * (index 0)
+     * <p/>
+     * CAUTION: Remember during Spring Container inside event we persist a SdwnNetwork associated
+     * with this machine. see NetworkInitializer
+     *
      * @throws Exception
      */
     @Before
     public void setUp() throws Exception
     {
         //creates one SdwnNetwork with 5 controllers
-        SdwnNetwork net=persisControllers(5);
+        SdwnNetwork net = persisControllers(5);
         netId = net.getId();
-
-        //here we call repo again to get a new instance of persisted network and a controller
-        //This way we can make sure that we have an entity fetch from db
         persistedNet = networkRepo.findOne(netId);
-        aPersistedCtrl = persistedNet.getControllers().get(0);
+
+        ctrlId = persistedNet.getControllers().get(0).getId();
+        persistedCtrl = controllerRepo.findOne(ctrlId);
+    }
+
+    //    @Ignore("This is a test in RepoBaseTest which should be run for debugging base class")
+    @Test
+    public void run_this_test_for_debugging_this_base_class()
+    {
+
     }
 
     @After
-    public void after() throws Exception{
+    public void after() throws Exception
+    {
         networkRepo.deleteAll();
     }
 
-    private SdwnNetwork persisControllers(int num){
-        return persisControllers(num,someIp);
+    private SdwnNetwork persisControllers(int num)
+    {
+        return persisControllers(num, someIp);
     }
 
-    protected SdwnNetwork persisControllers(int num,String ip){
+    protected SdwnNetwork persisControllers(int num, String ip)
+    {
         SdwnNetwork network = new SdwnNetwork(ip);
 
         List<SdwnController> controllers = new ArrayList<>();
@@ -80,5 +101,34 @@ public class RepoBaseTest
         networkRepo.save(network);
 
         return network;
+    }
+
+    protected SdwnNetwork persistANet(String ip)
+    {
+        SdwnNetwork net = createNet(ip);
+
+        return networkRepo.save(net);
+    }
+
+    protected SdwnNetwork createNet(String ip)
+    {
+        SdwnNetwork net = new SdwnNetwork(ip);
+
+        return net;
+    }
+
+    protected DeviceConnection createDevCon(String conStr)
+    {
+        DeviceConnection dev = new DeviceConnection(conStr);
+
+        return dev;
+    }
+
+    protected SdwnController createCtrl()
+    {
+        SdwnController con = new SdwnController();
+        con.setSinkAddress(43L);
+
+        return con;
     }
 }

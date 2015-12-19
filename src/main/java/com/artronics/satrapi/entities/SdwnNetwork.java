@@ -98,4 +98,8 @@ public class SdwnNetwork
         updated = new Date();
     }
 
+    public void addSdwnController(SdwnController controller)
+    {
+        controllers.add(controller);
+    }
 }

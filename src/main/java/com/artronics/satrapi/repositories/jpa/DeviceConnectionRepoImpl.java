@@ -1,8 +1,11 @@
 package com.artronics.satrapi.repositories.jpa;
 
 import com.artronics.satrapi.entities.DeviceConnection;
+import com.artronics.satrapi.entities.SdwnController;
 import com.artronics.satrapi.repositories.DeviceConnectionCustomRepo;
+import com.artronics.satrapi.repositories.SdwnControllerRepo;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,9 +19,21 @@ public class DeviceConnectionRepoImpl implements DeviceConnectionCustomRepo
     @PersistenceContext
     EntityManager em;
 
+    @Autowired
+    SdwnControllerRepo controllerRepo;
+
     @Override
     public DeviceConnection findByController(Long controllerId, Long id)
     {
-        return null;
+        SdwnController controller = controllerRepo.findOne(controllerId);
+        if (controller == null) {
+            return null;
+        }
+
+        DeviceConnection device = em.find(DeviceConnection.class,id);
+        if (controller.getDeviceConnection().getId().equals(device.getId()))
+            return null;
+
+        return device;
     }
 }

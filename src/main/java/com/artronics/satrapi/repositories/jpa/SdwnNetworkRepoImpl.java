@@ -1,5 +1,6 @@
 package com.artronics.satrapi.repositories.jpa;
 
+import com.artronics.satrapi.entities.SdwnController;
 import com.artronics.satrapi.entities.SdwnNetwork;
 import com.artronics.satrapi.repositories.SdwnNetworkCustomRepo;
 import org.apache.log4j.Logger;
@@ -33,5 +34,18 @@ public class SdwnNetworkRepoImpl implements SdwnNetworkCustomRepo
         }
 
         return singleResult;
+    }
+
+    @Override
+    public SdwnController addSdwnController(Long netId,SdwnController con)
+    {
+        SdwnNetwork net = em.find(SdwnNetwork.class,netId);
+        net.addSdwnController(con);
+
+        con.setSdwnNetwork(net);
+
+        em.persist(net);
+
+        return con;
     }
 }

@@ -4,6 +4,7 @@ import com.artronics.satrapi.entities.SdwnController;
 import com.artronics.satrapi.entities.SdwnNetwork;
 import com.artronics.satrapi.helper.RepoBaseTest;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,24 @@ public class SdwnNetworkRepoTest extends RepoBaseTest
 
         assertNotNull(persistedNet.getId());
         assertThat(persistedNet.getIp(), equalTo(someIp));
+    }
+
+    @Test
+    @Transactional
+    public void addSdwnController_should_add_controller(){
+        SdwnController con = createCtrl();
+        SdwnController controller= networkRepo.addSdwnController(netId,con);
+
+        assertNotNull(controller.getId());
+        assertNotNull(controller.getSdwnNetwork());
+
+        SdwnNetwork net = networkRepo.findOne(netId);
+        assertThat(net.getControllers().size(),equalTo(numOfCtrl+1));
+    }
+
+    @Test
+    public void it_should_add_new_entity_to_net_list_right_a_way(){
+
     }
 
     @Test
