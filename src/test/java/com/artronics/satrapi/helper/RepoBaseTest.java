@@ -29,6 +29,9 @@ public class RepoBaseTest
     @Autowired
     protected DeviceConnectionRepo connectionRepo;
 
+    protected SdwnController aPersistedCtrl;
+    protected SdwnNetwork persistedNet;
+
     protected String someIp ="12.34.55.234";
     protected int numOfCtrl = 5;
     protected Long netId;
@@ -45,7 +48,13 @@ public class RepoBaseTest
     public void setUp() throws Exception
     {
         //creates one SdwnNetwork with 5 controllers
-        persisControllers(5);
+        SdwnNetwork net=persisControllers(5);
+        netId = net.getId();
+
+        //here we call repo again to get a new instance of persisted network and a controller
+        //This way we can make sure that we have an entity fetch from db
+        persistedNet = networkRepo.findOne(netId);
+        aPersistedCtrl = persistedNet.getControllers().get(0);
     }
 
     @After
@@ -53,11 +62,11 @@ public class RepoBaseTest
         networkRepo.deleteAll();
     }
 
-    private void persisControllers(int num){
-        netId=persisControllers(num,someIp);
+    private SdwnNetwork persisControllers(int num){
+        return persisControllers(num,someIp);
     }
 
-    protected Long persisControllers(int num,String ip){
+    protected SdwnNetwork persisControllers(int num,String ip){
         SdwnNetwork network = new SdwnNetwork(ip);
 
         List<SdwnController> controllers = new ArrayList<>();
@@ -70,6 +79,6 @@ public class RepoBaseTest
         network.setControllers(controllers);
         networkRepo.save(network);
 
-        return network.getId();
+        return network;
     }
 }

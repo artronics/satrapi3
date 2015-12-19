@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class SdwnControllerRepoImpl implements SdwnControllerCustomRepo
@@ -30,11 +31,13 @@ public class SdwnControllerRepoImpl implements SdwnControllerCustomRepo
             return null;
         }
 
-        SdwnController controller= em.find(SdwnController.class,id);
+        List<SdwnController> controllers = network.getControllers();
 
-        if (!network.getId().equals(controller.getSdwnNetwork().getId()))
-            return null;
+        for (SdwnController controller:controllers ){
+            if (controller.getId().equals(id))
+                return controller;
+        }
 
-        return  controller;
+        return null;
     }
 }
