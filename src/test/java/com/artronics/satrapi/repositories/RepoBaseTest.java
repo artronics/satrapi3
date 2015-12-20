@@ -31,6 +31,9 @@ public class RepoBaseTest
     @Autowired
     protected DeviceConnectionRepo connectionRepo;
 
+    @Autowired
+    protected PacketRepo packetRepo;
+
     //net that is persisted with someIp
     protected String someIp = "12.34.55.234";
     protected SdwnNetwork persistedNet;
