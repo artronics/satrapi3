@@ -1,7 +1,5 @@
 package com.artronics.satrapi.entities;
 
-import com.artronics.satrapi.entities.packet.NetworkPacket;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,15 +12,6 @@ public class PacketModel
     private int netId;
 
     private List<Integer> payload;
-
-    public PacketModel(NetworkPacket networkPacket)
-    {
-        netPacketToEntity(networkPacket);
-    }
-
-    private void netPacketToEntity(NetworkPacket networkPacket)
-    {
-    }
 
     public PacketModel()
     {
