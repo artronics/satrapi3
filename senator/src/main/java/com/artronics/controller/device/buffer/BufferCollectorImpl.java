@@ -1,6 +1,7 @@
-package com.artronics.controller.device;
+package com.artronics.controller.device.buffer;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,11 +13,22 @@ public class BufferCollectorImpl implements BufferCollector
 {
     private final static Logger log = Logger.getLogger(BufferCollectorImpl.class);
 
+    private int startByte;
+    private int stopByte;
+
     private final LinkedList<Integer> dataQueue = new LinkedList<>();
     private final ArrayList<Integer> thisPacket = new ArrayList<>();
     private final List<List<Integer>> generatedPcks = new ArrayList<>();
     private int thisPacketExpectedSize = 0;
     private boolean isStarted = false;
+
+    public BufferCollectorImpl(
+            @Value("com.artronics.controller.device.buffer.startByte")int startByte,
+            @Value("com.artronics.controller.device.buffer.stopByte") int stopByte)
+    {
+        this.startByte = startByte;
+        this.stopByte = stopByte;
+    }
 
     @Override
     public List<List<Integer>> generateLists(List<Integer> receivedData)
@@ -30,7 +42,7 @@ public class BufferCollectorImpl implements BufferCollector
         while (!dataQueue.isEmpty()) {
             int thisData = dataQueue.removeFirst();
 
-            if (thisData == START_BYTE
+            if (thisData == startByte
                     && !isStarted
                     && thisPacketExpectedSize == 0) {
                 isStarted = Boolean.TRUE;
@@ -43,7 +55,7 @@ public class BufferCollectorImpl implements BufferCollector
                 }else if (thisPacket.size() < thisPacketExpectedSize) {
                     thisPacket.add(thisData);
 
-                }else if (thisData == STOP_BYTE
+                }else if (thisData == stopByte
                         && thisPacket.size() == thisPacketExpectedSize) {
                     ArrayList<Integer> newPacket = new ArrayList<>(thisPacket);
                     generatedPcks.add(newPacket);
@@ -58,5 +70,15 @@ public class BufferCollectorImpl implements BufferCollector
         generatedPcks.clear();
 
         return tmp;
+    }
+
+    public void setStartByte(int startByte)
+    {
+        this.startByte = startByte;
+    }
+
+    public void setStopByte(int stopByte)
+    {
+        this.stopByte = stopByte;
     }
 }

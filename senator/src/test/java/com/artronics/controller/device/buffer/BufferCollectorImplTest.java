@@ -1,4 +1,4 @@
-package com.artronics.controller.device;
+package com.artronics.controller.device.buffer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,8 @@ import static org.junit.Assert.*;
 
 public class BufferCollectorImplTest
 {
-    BufferCollector convertor = new BufferCollectorImpl();
+    BufferCollector convertor = new BufferCollectorImpl(FakeConnectionBuffer.START_BYTE,FakeConnectionBuffer.STOP_BYTE);
+
     List<List<Integer>> act = new ArrayList<>();
     List<Integer> expOnePck = new ArrayList<>();
     List<List<Integer>> expPcks = new ArrayList<>();

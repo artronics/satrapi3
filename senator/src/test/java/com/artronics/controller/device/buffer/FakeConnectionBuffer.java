@@ -1,4 +1,4 @@
-package com.artronics.controller.device;
+package com.artronics.controller.device.buffer;
 
 
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.List;
 
 public class FakeConnectionBuffer
 {
-    private static final int START_BYTE = 122;
-    private static final int STOP_BYTE = 126;
+    static final int START_BYTE = 122;
+    static final int STOP_BYTE = 126;
 
     private List<Integer> firstOne;
     private List<Integer> secondOne;
