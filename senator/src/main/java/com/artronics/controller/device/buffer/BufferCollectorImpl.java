@@ -1,9 +1,11 @@
 package com.artronics.controller.device.buffer;
 
+import com.artronics.controller.device.DeviceProperties;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,8 +15,8 @@ public class BufferCollectorImpl implements BufferCollector
 {
     private final static Logger log = Logger.getLogger(BufferCollectorImpl.class);
 
-    private int startByte;
-    private int stopByte;
+    private Integer startByte;
+    private Integer stopByte;
 
     private final LinkedList<Integer> dataQueue = new LinkedList<>();
     private final ArrayList<Integer> thisPacket = new ArrayList<>();
@@ -22,12 +24,16 @@ public class BufferCollectorImpl implements BufferCollector
     private int thisPacketExpectedSize = 0;
     private boolean isStarted = false;
 
-    public BufferCollectorImpl(
-            @Value("com.artronics.controller.device.buffer.startByte")int startByte,
-            @Value("com.artronics.controller.device.buffer.stopByte") int stopByte)
+    private DeviceProperties deviceProperties;
+
+    public BufferCollectorImpl()
     {
-        this.startByte = startByte;
-        this.stopByte = stopByte;
+    }
+
+    @PostConstruct
+    public void initBean(){
+        this.startByte = deviceProperties.getStartByte();
+        this.stopByte = deviceProperties.getStopByte();
     }
 
     @Override
@@ -70,6 +76,12 @@ public class BufferCollectorImpl implements BufferCollector
         generatedPcks.clear();
 
         return tmp;
+    }
+
+    @Autowired
+    public void setDeviceProperties(DeviceProperties deviceProperties)
+    {
+        this.deviceProperties = deviceProperties;
     }
 
     public void setStartByte(int startByte)
