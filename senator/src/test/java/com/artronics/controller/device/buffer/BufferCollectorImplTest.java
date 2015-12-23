@@ -1,7 +1,13 @@
 package com.artronics.controller.device.buffer;
 
+import com.artronics.controller.config.ControllerBeanDef;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +16,14 @@ import java.util.List;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ControllerBeanDef.class)
+//@DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
 public class BufferCollectorImplTest
 {
-    BufferCollector convertor = new BufferCollectorImpl(FakeConnectionBuffer.START_BYTE,FakeConnectionBuffer.STOP_BYTE);
+    @Autowired
+    BufferCollector convertor;
 
     List<List<Integer>> act = new ArrayList<>();
     List<Integer> expOnePck = new ArrayList<>();
@@ -62,6 +73,7 @@ public class BufferCollectorImplTest
     }
 
     @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     public void As_long_as_queue_has_data_it_should_create_packets()
     {
         act = convertor.generateLists(twoPackets);
