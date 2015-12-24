@@ -1,12 +1,14 @@
 package com.artronics.senator.packet;
 
-public class SdwnPacket extends PacketDecorator
+public class SdwnPacket
 {
     private int netId;
 
+    private DevicePacket devicePacket;
+
     public SdwnPacket(DevicePacket packet)
     {
-        super(packet);
+        this.devicePacket = packet;
     }
 
     public int getNetId()
