@@ -1,6 +1,6 @@
 package com.artronics.senator.packet;
 
-public class ControllerPacket //extends PacketDecorator
+public class ControllerPacket implements Packet
 {
     Long sourceCtrlId;
 
@@ -19,5 +19,11 @@ public class ControllerPacket //extends PacketDecorator
     public void setSourceCtrlId(Long sourceCtrlId)
     {
         this.sourceCtrlId = sourceCtrlId;
+    }
+
+    @Override
+    public String toLogger()
+    {
+        return toString();
     }
 }
