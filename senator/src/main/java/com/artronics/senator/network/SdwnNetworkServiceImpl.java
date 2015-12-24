@@ -1,0 +1,17 @@
+package com.artronics.senator.network;
+
+import com.artronics.senator.packet.ControllerPacket;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
+
+@Component
+public class SdwnNetworkServiceImpl implements SdwnNetworkService
+{
+    private final static Logger log = Logger.getLogger(SdwnNetworkServiceImpl.class);
+
+    @Override
+    public void addPacket(ControllerPacket packet)
+    {
+
+    }
+}

@@ -17,4 +17,9 @@ public class ControllerPacket implements Packet
     {
         return toString();
     }
+
+    public void setSrcControllerId(Long srcControllerId)
+    {
+        this.srcControllerId = srcControllerId;
+    }
 }

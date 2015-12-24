@@ -27,6 +27,8 @@ public class ControllerServiceImpl implements ControllerService
     public void addDevicePacket(DevicePacket packet)
     {
         ControllerPacket controllerPacket = ControllerPacket.create(packet);
+        controllerPacket.setSrcControllerId(controllerId);
+
 
     }
 }
