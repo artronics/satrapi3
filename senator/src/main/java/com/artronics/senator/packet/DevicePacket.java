@@ -2,7 +2,7 @@ package com.artronics.senator.packet;
 
 import java.util.List;
 
-public class DevicePacket
+public class DevicePacket implements Packet
 {
     private final List<Integer> content;
 
@@ -14,5 +14,11 @@ public class DevicePacket
     public List<Integer> getContent()
     {
         return null;
+    }
+
+    @Override
+    public String toLogger()
+    {
+        return toString();
     }
 }

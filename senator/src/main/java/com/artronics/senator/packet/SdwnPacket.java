@@ -1,6 +1,6 @@
 package com.artronics.senator.packet;
 
-public class SdwnPacket
+public class SdwnPacket implements Packet
 {
     private int netId;
 
@@ -19,5 +19,11 @@ public class SdwnPacket
     public void setNetId(int netId)
     {
         this.netId = netId;
+    }
+
+    @Override
+    public String toLogger()
+    {
+        return toString();
     }
 }
