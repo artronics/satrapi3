@@ -4,5 +4,5 @@ import com.artronics.senator.packet.ControllerPacket;
 
 public interface SdwnNetworkService
 {
-    void addPacket(ControllerPacket packet);
+    void addNetPacket(ControllerPacket packet);
 }

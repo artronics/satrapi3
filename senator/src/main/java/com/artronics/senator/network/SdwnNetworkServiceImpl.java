@@ -10,7 +10,7 @@ public class SdwnNetworkServiceImpl implements SdwnNetworkService
     private final static Logger log = Logger.getLogger(SdwnNetworkServiceImpl.class);
 
     @Override
-    public void addPacket(ControllerPacket packet)
+    public void addNetPacket(ControllerPacket packet)
     {
 
     }
