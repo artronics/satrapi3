@@ -2,23 +2,14 @@ package com.artronics.senator.packet;
 
 public class ControllerPacket implements Packet
 {
-    Long sourceCtrlId;
+    private Long srcDeviceId;
+    private Long srcControllerId;
 
-    private DevicePacket devicePacket;
+    private int srcShortAdd;
+    private int dstShortAdd;
 
-    public ControllerPacket(DevicePacket devicePacket)
-    {
-        this.devicePacket = devicePacket;
-    }
-
-    public Long getSourceCtrlId()
-    {
-        return sourceCtrlId;
-    }
-
-    public void setSourceCtrlId(Long sourceCtrlId)
-    {
-        this.sourceCtrlId = sourceCtrlId;
+    public static ControllerPacket create(DevicePacket devicePacket){
+        return new ControllerPacket();
     }
 
     @Override

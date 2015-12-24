@@ -5,33 +5,11 @@ import java.io.Serializable;
 public class NetworkPacket extends ControllerPacket implements Serializable
 {
     private Long id;
+    private Long srcNetId;
 
-    private ControllerPacket controllerPacket;
-
-    private String sourceIp;
-
-    public NetworkPacket(DevicePacket devicePacket)
+    @Override
+    public String toLogger()
     {
-        super(devicePacket);
+        return null;
     }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-    public String getSourceIp()
-    {
-        return sourceIp;
-    }
-
-    public void setSourceIp(String sourceIp)
-    {
-        this.sourceIp = sourceIp;
-    }
-
 }
