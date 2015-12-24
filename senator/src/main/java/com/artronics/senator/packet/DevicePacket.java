@@ -2,27 +2,17 @@ package com.artronics.senator.packet;
 
 import java.util.List;
 
-public class DevicePacket extends PacketDecorator implements Packet
+public class DevicePacket
 {
-    private List<Integer> content;
-
-    public DevicePacket()
-    {
-    }
+    private final List<Integer> content;
 
     public DevicePacket(List<Integer> content)
     {
         this.content = content;
     }
 
-    @Override
     public List<Integer> getContent()
     {
         return null;
-    }
-
-    public void setContent(List<Integer> content)
-    {
-        this.content = content;
     }
 }
