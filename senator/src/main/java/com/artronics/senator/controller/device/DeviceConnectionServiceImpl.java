@@ -1,5 +1,6 @@
 package com.artronics.senator.controller.device;
 
+import com.artronics.senator.controller.ControllerService;
 import com.artronics.senator.controller.device.buffer.BufferCollector;
 import com.artronics.senator.controller.device.connection.Connection;
 import com.artronics.senator.event.DeviceInputBufferIsReady;
@@ -22,7 +23,9 @@ public class DeviceConnectionServiceImpl implements DeviceConnectionService
 
     @Autowired
     BufferCollector bufferCollector;
-    
+
+    @Autowired
+    ControllerService controllerService;
 
     Connection connection;
 
@@ -48,6 +51,8 @@ public class DeviceConnectionServiceImpl implements DeviceConnectionService
         for (List<Integer> buff:buffers){
             DevicePacket devicePacket = new DevicePacket(buff);
             devicePacket.setSrcDeviceId(deviceProperties.getId());
+
+            controllerService.addDevicePacket(devicePacket);
         }
     }
 
