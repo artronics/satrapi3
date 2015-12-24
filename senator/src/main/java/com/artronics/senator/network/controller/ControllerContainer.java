@@ -1,9 +1,9 @@
-package com.artronics.senator.controller;
+package com.artronics.senator.network.controller;
 
-import com.artronics.senator.controller.config.ControllerBeanDef;
-import com.artronics.senator.controller.device.connection.Connection;
-import com.artronics.senator.controller.device.exception.DeviceConnectionException;
-import com.artronics.senator.controller.device.serialPort.SerialPortConnection;
+import com.artronics.senator.network.controller.config.ControllerBeanDef;
+import com.artronics.senator.network.controller.sdwn.device.connection.Connection;
+import com.artronics.senator.network.controller.sdwn.device.exception.DeviceConnectionException;
+import com.artronics.senator.network.controller.sdwn.device.serialPort.SerialPortConnection;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;

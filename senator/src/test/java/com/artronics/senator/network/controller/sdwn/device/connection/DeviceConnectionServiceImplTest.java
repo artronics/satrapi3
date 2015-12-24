@@ -1,9 +1,10 @@
-package com.artronics.senator.controller.device.connection;
+package com.artronics.senator.network.controller.sdwn.device.connection;
 
-import com.artronics.senator.controller.device.buffer.FakeConnectionBuffer;
-import com.artronics.senator.controller.device.exception.DeviceConnectionException;
 import com.artronics.senator.mocks.MockBeanDef;
 import com.artronics.senator.mocks.MockConnection;
+import com.artronics.senator.network.controller.sdwn.device.DeviceConnectionServiceImpl;
+import com.artronics.senator.network.controller.sdwn.device.buffer.FakeConnectionBuffer;
+import com.artronics.senator.network.controller.sdwn.device.exception.DeviceConnectionException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

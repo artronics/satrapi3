@@ -1,4 +1,4 @@
-package com.artronics.senator.controller.device.connection;
+package com.artronics.senator.network.controller.sdwn.device;
 
 public interface DeviceConnectionService
 {

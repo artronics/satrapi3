@@ -1,7 +1,8 @@
-package com.artronics.senator.controller.device.connection;
+package com.artronics.senator.network.controller.sdwn.device;
 
-import com.artronics.senator.controller.device.buffer.BufferCollector;
 import com.artronics.senator.event.DeviceInputBufferIsReady;
+import com.artronics.senator.network.controller.sdwn.device.buffer.BufferCollector;
+import com.artronics.senator.network.controller.sdwn.device.connection.Connection;
 import com.artronics.senator.packet.services.PacketService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

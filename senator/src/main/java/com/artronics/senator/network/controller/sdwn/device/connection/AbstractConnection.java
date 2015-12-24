@@ -1,7 +1,7 @@
-package com.artronics.senator.controller.device.connection;
+package com.artronics.senator.network.controller.sdwn.device.connection;
 
-import com.artronics.senator.controller.device.DeviceProperties;
 import com.artronics.senator.event.DeviceInputBufferIsReady;
+import com.artronics.senator.network.controller.sdwn.device.DeviceProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

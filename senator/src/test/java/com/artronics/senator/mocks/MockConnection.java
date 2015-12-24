@@ -1,8 +1,8 @@
 package com.artronics.senator.mocks;
 
-import com.artronics.senator.controller.device.buffer.FakeConnectionBuffer;
-import com.artronics.senator.controller.device.connection.AbstractConnection;
-import com.artronics.senator.controller.device.exception.DeviceConnectionException;
+import com.artronics.senator.network.controller.sdwn.device.buffer.FakeConnectionBuffer;
+import com.artronics.senator.network.controller.sdwn.device.connection.AbstractConnection;
+import com.artronics.senator.network.controller.sdwn.device.exception.DeviceConnectionException;
 import org.apache.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
