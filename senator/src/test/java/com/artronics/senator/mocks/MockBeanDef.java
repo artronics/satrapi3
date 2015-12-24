@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(ControllerBeanDef.class)
-@ComponentScan(basePackages = {"com.artronics.senator.mocks"})
+@ComponentScan(basePackages = {"com.artronics.senator.mocks",
+"com.artronics.senator.packet"})
 //@Profile("test")
 public class MockBeanDef
 {

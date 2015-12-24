@@ -9,7 +9,8 @@ import org.springframework.core.env.Environment;
 
 
 @Configuration
-@ComponentScan(basePackages = {"com.artronics.senator.controller"})
+@ComponentScan(basePackages = {"com.artronics.senator.controller",
+"com.artronics.senator.packet"})
 @PropertySource("classpath:controller-defaults.properties")
 @PropertySource("classpath:device-defaults.properties")
 public class ControllerBeanDef
