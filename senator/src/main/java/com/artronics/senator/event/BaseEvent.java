@@ -13,4 +13,9 @@ public class BaseEvent<M> extends ApplicationEvent
         super(source);
         this.message = message;
     }
+
+    public M getMessage()
+    {
+        return message;
+    }
 }
