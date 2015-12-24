@@ -1,4 +1,4 @@
-package com.artronics.senator.network.controller.sdwn.device;
+package com.artronics.senator.controller.device;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;

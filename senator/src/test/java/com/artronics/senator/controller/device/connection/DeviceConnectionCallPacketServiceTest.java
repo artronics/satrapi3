@@ -1,8 +1,8 @@
-package com.artronics.senator.network.controller.sdwn.device.connection;
+package com.artronics.senator.controller.device.connection;
 
+import com.artronics.senator.controller.device.DeviceConnectionServiceImpl;
+import com.artronics.senator.controller.device.buffer.BufferCollector;
 import com.artronics.senator.event.DeviceInputBufferIsReady;
-import com.artronics.senator.network.controller.sdwn.device.DeviceConnectionServiceImpl;
-import com.artronics.senator.network.controller.sdwn.device.buffer.BufferCollector;
 import com.artronics.senator.packet.services.PacketService;
 import org.junit.Before;
 import org.junit.Test;

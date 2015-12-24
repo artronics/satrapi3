@@ -1,4 +1,4 @@
-package com.artronics.senator.network.controller.sdwn.device.exception;
+package com.artronics.senator.controller.device.exception;
 
 public class DeviceConnectionException extends Exception
 {

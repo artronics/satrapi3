@@ -1,6 +1,6 @@
-package com.artronics.senator.network.controller.sdwn.device.buffer;
+package com.artronics.senator.controller.device.buffer;
 
-import com.artronics.senator.network.controller.config.ControllerBeanDef;
+import com.artronics.senator.controller.config.ControllerBeanDef;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

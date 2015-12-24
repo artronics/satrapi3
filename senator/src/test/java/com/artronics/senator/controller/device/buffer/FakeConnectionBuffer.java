@@ -1,4 +1,4 @@
-package com.artronics.senator.network.controller.sdwn.device.buffer;
+package com.artronics.senator.controller.device.buffer;
 
 
 import java.util.ArrayList;

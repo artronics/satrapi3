@@ -1,6 +1,6 @@
-package com.artronics.senator.network.controller.sdwn.device.buffer;
+package com.artronics.senator.controller.device.buffer;
 
-import com.artronics.senator.network.controller.sdwn.device.DeviceProperties;
+import com.artronics.senator.controller.device.DeviceProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

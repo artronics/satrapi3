@@ -1,9 +1,9 @@
-package com.artronics.senator.network.controller.sdwn.device;
+package com.artronics.senator.controller.device;
 
+import com.artronics.senator.controller.device.buffer.BufferCollector;
+import com.artronics.senator.controller.device.connection.Connection;
 import com.artronics.senator.event.DeviceInputBufferIsReady;
-import com.artronics.senator.network.controller.sdwn.device.buffer.BufferCollector;
-import com.artronics.senator.network.controller.sdwn.device.connection.Connection;
-import com.artronics.senator.packet.services.PacketService;
+import com.artronics.senator.packet.DevicePacket;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -19,8 +19,6 @@ public class DeviceConnectionServiceImpl implements DeviceConnectionService
     @Autowired
     BufferCollector bufferCollector;
     
-    @Autowired
-    PacketService packetService;
 
     Connection connection;
 
@@ -44,7 +42,7 @@ public class DeviceConnectionServiceImpl implements DeviceConnectionService
         }
         log.debug("This buffer contains "+buffers.size()+" packets");
         for (List<Integer> buff:buffers){
-            packetService.addBuffer(buff);
+            DevicePacket devicePacket = new DevicePacket(buff);
         }
     }
 
