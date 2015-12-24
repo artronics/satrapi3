@@ -1,7 +1,8 @@
-package com.artronics.senator.controller.device;
+package com.artronics.senator.controller.device.connection;
 
 import com.artronics.senator.controller.device.buffer.BufferCollector;
-import com.artronics.senator.controller.device.buffer.DeviceDriverInputBufferImpl;
+import com.artronics.senator.event.DeviceInputBufferIsReady;
+import com.artronics.senator.packet.services.PacketService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -15,14 +16,17 @@ import java.util.List;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
-public class DeviceDriverInputBufferImplTest
+public class DeviceConnectionCallPacketServiceTest
 {
     @InjectMocks
     @Spy
-    private DeviceDriverInputBufferImpl deviceDriver;
+    private DeviceConnectionServiceImpl connectionService;
 
     @Mock
     private BufferCollector bufferCollector;
+
+    @Mock
+    private PacketService packetService;
 
     private List<Integer> buffer = new ArrayList<>();
     private List<List<Integer>> buffers = new ArrayList<>();
@@ -35,18 +39,19 @@ public class DeviceDriverInputBufferImplTest
     }
 
     @Test
-    public void when_call_send_buffer_bufferCollector_must_be_called(){
-        deviceDriver.sendBuffer(buffer);
+    public void when_buffer_received_it_should_call_collector(){
+        fireDeviceInputBufferIsReady(buffer);
+
         verify(bufferCollector,times(1)).generateLists(buffer);
     }
 
     @Test
-    public void if_BC_returns_empty_list_shouldnt_fire_event(){
-        deviceDriver.sendBuffer(buffer);
+    public void if_BC_returns_empty_list_should_not_call_packet_service(){
+        fireDeviceInputBufferIsReady(buffer);
         when(bufferCollector.generateLists(buffer)).thenReturn(new ArrayList<List<Integer>>());
 
         verify(bufferCollector,times(1)).generateLists(buffer);
-        verify(deviceDriver,times(0)).fireDeviceBufferIsReady(any());
+        verify(packetService,times(0)).addBuffer(any());
         verifyNoMoreInteractions(bufferCollector);
     }
 
@@ -54,10 +59,10 @@ public class DeviceDriverInputBufferImplTest
     public void as_long_as_there_is_buffer_we_should_fire_event(){
         buffers=createLists(5);
         when(bufferCollector.generateLists(buffer)).thenReturn(buffers);
-        deviceDriver.sendBuffer(buffer);
+        fireDeviceInputBufferIsReady(buffer);
 
         verify(bufferCollector,times(1)).generateLists(buffer);
-        verify(deviceDriver,times(5)).fireDeviceBufferIsReady(any());
+        verify(packetService,times(5)).addBuffer(any());
     }
 
     private List<List<Integer>> createLists(int num){
@@ -67,5 +72,10 @@ public class DeviceDriverInputBufferImplTest
         }
 
         return lists;
+    }
+
+    private void fireDeviceInputBufferIsReady(List<Integer> buffer){
+        DeviceInputBufferIsReady event = new DeviceInputBufferIsReady(this,buffer);
+        connectionService.deviceInputBufferIsReadyHandler(event);
     }
 }
