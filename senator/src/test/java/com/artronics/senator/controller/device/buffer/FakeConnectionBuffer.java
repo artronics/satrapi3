@@ -3,6 +3,7 @@ package com.artronics.senator.controller.device.buffer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class FakeConnectionBuffer
@@ -99,6 +100,20 @@ public class FakeConnectionBuffer
         return allBuffers;
     }
 
+    public static byte[] convertToByteArray(List<Integer> buffer){
+        Iterator<Integer> iterator = buffer.iterator();
+        byte[] b=new byte[255];
+
+        int index=0;
+        while(iterator.hasNext())
+        {
+            Integer i = iterator.next();
+            b[index] = i.byteValue();
+            index++;
+        }
+
+        return b;
+    }
     //<editor-fold desc="getters">
     public List<Integer> getFirstOne()
     {
