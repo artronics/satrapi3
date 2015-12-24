@@ -23,12 +23,15 @@ public class DeviceDriverInputBufferImpl implements DeviceDriverInputBuffer
             return;
         }
         for (List<Integer> buff:buffers){
-            fireDeviceBufferIsReady(buff);
+
         }
     }
 
     @EventListener
-    public DeviceInputBufferIsReady fireDeviceBufferIsReady(List<Integer> buffer){
-        return new DeviceInputBufferIsReady(this);
+    public void handleInputBufferIsReady(DeviceInputBufferIsReady event){
+        log.debug("New buffer received from device.");
+    }
+    public void fireDeviceBufferIsReady(List<Integer> buffer){
+
     }
 }

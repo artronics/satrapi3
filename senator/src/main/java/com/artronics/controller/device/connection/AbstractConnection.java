@@ -13,9 +13,9 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ConnectionDecorator<C> implements Connection<C>
+public abstract class AbstractConnection implements Connection
 {
-    private final static Logger log = Logger.getLogger(ConnectionDecorator.class);
+    private final static Logger log = Logger.getLogger(AbstractConnection.class);
 
     private static final int MAX_PACKET_LENGTH = 255;
 
@@ -25,14 +25,12 @@ public abstract class ConnectionDecorator<C> implements Connection<C>
 
     protected String driverName= this.toString();
 
-    protected Connection<C> connection;
-
     protected DeviceProperties deviceProperties;
 
     protected InputStream input=null;
     protected OutputStream output=null;
 
-    public ConnectionDecorator()
+    public AbstractConnection()
     {
     }
 

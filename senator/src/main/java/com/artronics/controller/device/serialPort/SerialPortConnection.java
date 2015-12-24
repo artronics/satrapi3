@@ -1,6 +1,6 @@
 package com.artronics.controller.device.serialPort;
 
-import com.artronics.controller.device.connection.ConnectionDecorator;
+import com.artronics.controller.device.connection.AbstractConnection;
 import com.artronics.controller.device.exception.DeviceConnectionException;
 import gnu.io.*;
 import org.apache.log4j.Logger;
@@ -13,8 +13,8 @@ import java.util.TooManyListenersException;
 
 @Component
 @DependsOn("deviceProperties")
-public class SerialPortConnection extends ConnectionDecorator<CommPortIdentifier>
-        implements SerialPortEventListener//,Connection<CommPortIdentifier>
+public class SerialPortConnection extends AbstractConnection
+        implements SerialPortEventListener
 {
     private final static Logger log = Logger.getLogger(SerialPortConnection.class);
 
@@ -44,8 +44,6 @@ public class SerialPortConnection extends ConnectionDecorator<CommPortIdentifier
             if (port.getName().equals(connectionString)) {
                 identifier = port;
 
-                SerialPortConnectionWrapper wrapper = new SerialPortConnectionWrapper(port);
-                connection = wrapper;
 
                 log.debug("Match found.");
                 break;
