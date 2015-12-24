@@ -18,6 +18,7 @@ public class PacketServiceImpl implements PacketService
     @Override
     public void addBuffer(List<Integer> buffer)
     {
+        log.debug("New buffer added.");
 
     }
 }
