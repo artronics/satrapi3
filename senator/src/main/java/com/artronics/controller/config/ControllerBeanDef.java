@@ -1,7 +1,7 @@
 package com.artronics.controller.config;
 
-import com.artronics.controller.device.DeviceDriver;
-import com.artronics.controller.device.serialPort.SerialPortImpl;
+import com.artronics.controller.device.connection.Connection;
+import com.artronics.controller.device.serialPort.SerialPortConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -19,8 +19,9 @@ public class ControllerBeanDef
 
     @Bean
     @Primary
-    DeviceDriver getDeviceDriver(){
-        return new SerialPortImpl();
+    @DependsOn("deviceProperties")
+    Connection getConnection(){
+        return new SerialPortConnection();
     }
 
     @Bean

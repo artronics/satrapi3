@@ -4,15 +4,11 @@ import com.artronics.controller.device.connection.AbstractConnection;
 import com.artronics.controller.device.exception.DeviceConnectionException;
 import gnu.io.*;
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.TooManyListenersException;
 
-@Component
-@DependsOn("deviceProperties")
 public class SerialPortConnection extends AbstractConnection
         implements SerialPortEventListener
 {
