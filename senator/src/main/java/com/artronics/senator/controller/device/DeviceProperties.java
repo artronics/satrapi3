@@ -10,11 +10,25 @@ public class DeviceProperties
 {
     private final static Logger log = Logger.getLogger(DeviceProperties.class);
 
+    Long id;
+
     String connectionString;
     Integer timeout;
 
     Integer startByte;
     Integer stopByte;
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    @Required
+    @Value("${com.artronics.controller.device.id}")
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
 
     public String getConnectionString()
     {

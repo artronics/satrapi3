@@ -4,6 +4,8 @@ import java.util.List;
 
 public class DevicePacket implements Packet
 {
+    private Long srcDeviceId;
+
     private final List<Integer> content;
 
     public DevicePacket(List<Integer> content)
@@ -20,5 +22,15 @@ public class DevicePacket implements Packet
     public String toLogger()
     {
         return toString();
+    }
+
+    public Long getSrcDeviceId()
+    {
+        return srcDeviceId;
+    }
+
+    public void setSrcDeviceId(Long srcDeviceId)
+    {
+        this.srcDeviceId = srcDeviceId;
     }
 }

@@ -22,7 +22,6 @@ public abstract class AbstractConnection implements Connection
     @Autowired
     private ApplicationEventPublisher publisher;
 
-
     protected String driverName= this.toString();
 
     protected DeviceProperties deviceProperties;

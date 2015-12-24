@@ -6,16 +6,20 @@ import com.artronics.senator.event.DeviceInputBufferIsReady;
 import com.artronics.senator.packet.DevicePacket;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@DependsOn("deviceProperties")
 public class DeviceConnectionServiceImpl implements DeviceConnectionService
 {
     private final static Logger log = Logger.getLogger(DeviceConnectionServiceImpl.class);
-    
+
+    protected DeviceProperties deviceProperties;
+
     @Autowired
     BufferCollector bufferCollector;
     
@@ -43,6 +47,7 @@ public class DeviceConnectionServiceImpl implements DeviceConnectionService
         log.debug("This buffer contains "+buffers.size()+" packets");
         for (List<Integer> buff:buffers){
             DevicePacket devicePacket = new DevicePacket(buff);
+            devicePacket.setSrcDeviceId(deviceProperties.getId());
         }
     }
 
@@ -50,5 +55,12 @@ public class DeviceConnectionServiceImpl implements DeviceConnectionService
     public void setConnection(Connection connection)
     {
         this.connection = connection;
+    }
+
+    @Autowired
+    public void setDeviceProperties(
+            DeviceProperties deviceProperties)
+    {
+        this.deviceProperties = deviceProperties;
     }
 }
