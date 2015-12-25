@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class NetworkContainer
 {
+
     private final static Logger log = Logger.getLogger(NetworkContainer.class);
 
     public static void main(String[] args){
