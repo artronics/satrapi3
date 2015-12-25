@@ -2,10 +2,11 @@ package com.artronics.satrapi.repositories;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -22,16 +23,15 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(basePackages = {
         "com.artronics.satrapi.repositories",
-        })
-@ComponentScan(basePackages = {"com.artronics.satrapi.repositories"})
+})
 @EntityScan(basePackages = {"com.artronics.satrapi.entities"})
 @EnableTransactionManagement
+@DependsOn("databaseProperties")
 public class RepositoryConfig
 {
     private final static Logger log = Logger.getLogger(RepositoryConfig.class);
 
-    @Autowired
-    DatabaseProperties properties;
+    private DatabaseProperties properties;
 
     @Bean
     public DataSource dataSource()
@@ -93,5 +93,12 @@ public class RepositoryConfig
         emf.setJpaProperties(buildHibernateProperties());
 
         return emf;
+    }
+
+    @Autowired
+    @Required
+    public void setProperties(DatabaseProperties properties)
+    {
+        this.properties = properties;
     }
 }

@@ -5,8 +5,9 @@ import com.artronics.satrapi.core.NetworkInitializer;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
@@ -24,7 +25,14 @@ public class SatrapiApplication implements
 
     public static void main(String[] args)
     {
-        SpringApplication.run(SatrapiApplication.class, args);
+        new SpringApplicationBuilder()
+                .bannerMode(Banner.Mode.OFF)
+                .sources(SatrapiApplication.class)
+                .run(args);
+//        SpringApplication.run(SatrapiApplication.class, args);
+//        AnnotationConfigApplicationContext satrapiContext = new AnnotationConfigApplicationContext(
+//                SatrapiBeanConfig.class);
+//        satrapiContext.start();
     }
 
     @Override
