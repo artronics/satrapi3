@@ -20,9 +20,13 @@ public class SatrapiInitializerImpl implements SatrapiInitializer
     @Autowired
     SdwnNetworkService networkService;
 
+    @Autowired
+    Seeder seeder;
+
     @Override
     public void initSdwnNetwork()
     {
+        seeder.run();
         log.info("Initializing SDWN Network with IP: " + ip);
         sdwnNetwork = networkService.findByIp(ip);
 
