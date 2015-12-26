@@ -18,7 +18,7 @@ public class ControllerPacket implements Packet
 
     private int nextHop;
 
-    private ControllerPacket()
+    protected ControllerPacket()
     {
     }
 
