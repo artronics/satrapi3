@@ -35,7 +35,7 @@ public class ControllerServiceImpl implements ControllerService
     {
         ControllerPacket controllerPacket = ControllerPacket.create(packet);
         controllerPacket.setSrcControllerId(controllerId);
-        networkService.addNetPacket(controllerPacket);
+        networkService.addCtrlPacket(controllerPacket);
     }
 
     @Autowired
