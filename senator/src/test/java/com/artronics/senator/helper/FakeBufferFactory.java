@@ -11,6 +11,15 @@ import java.util.List;
 public class FakeBufferFactory
 {
     private final static Logger log = Logger.getLogger(FakeBufferFactory.class);
+    private static final int HEADER_LEN = 10;
+
+    public static List<Integer> createData(int src, int dst, int payloadLen)
+    {
+        List<Integer> buf = new ArrayList<>(createHeader(src, dst, payloadLen+HEADER_LEN, Packet.Type.DATA));
+        buf.addAll(createPayload(payloadLen));
+
+        return buf;
+    }
 
     public static List<Integer> createABuffer(){
         List<Integer> buff = new ArrayList<>(createAHeader());
