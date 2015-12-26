@@ -11,7 +11,8 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan(basePackages = {
         "com.artronics.satrapi.repositories",
 "com.artronics.satrapi.rest",
-"com.artronics.satrapi.services"})
+"com.artronics.satrapi.services",
+"com.artronics.satrapi.core"})
 @PropertySource("classpath:application-prod.properties")
 @Import(RepositoryConfig.class)
 public class SatrapiBeanConfig

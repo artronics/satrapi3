@@ -2,6 +2,7 @@ package com.artronics.satrapi;
 
 import com.artronics.satrapi.core.NetworkFinalizer;
 import com.artronics.satrapi.core.SatrapiInitializer;
+import com.artronics.satrapi.core.config.SatrapiBeanConfig;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class SatrapiApplication implements
         log.debug("Starting main Context.");
         new SpringApplicationBuilder()
                 .bannerMode(Banner.Mode.OFF)
-                .sources(SatrapiApplication.class)
+                .sources(SatrapiApplication.class,SatrapiBeanConfig.class)
                 .run(args);
 //        SpringApplication.run(SatrapiApplication.class, args);
 //        AnnotationConfigApplicationContext satrapiContext = new AnnotationConfigApplicationContext(
