@@ -31,14 +31,14 @@ public class FakeBufferFactory
         return new ArrayList<>(Arrays.asList(
                 len,
                 Packet.DEF_NET_ID,
-                SdwnPacketHelper.getLowAddress(src),
                 SdwnPacketHelper.getHighAddress(src),
-                SdwnPacketHelper.getLowAddress(dst),
+                SdwnPacketHelper.getLowAddress(src),
                 SdwnPacketHelper.getHighAddress(dst),
+                SdwnPacketHelper.getLowAddress(dst),
                 type.getValue(),
                 Packet.DEF_MAX_TTL,
-                SdwnPacketHelper.getLowAddress(0),
-                SdwnPacketHelper.getHighAddress(0)
+                SdwnPacketHelper.getHighAddress(0),
+                SdwnPacketHelper.getLowAddress(0)
         ));
     }
     public static List<Integer> createAHeader(){

@@ -2,6 +2,7 @@ package com.artronics.senator.packet;
 
 import com.artronics.senator.helper.FakeBufferFactory;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,20 +13,21 @@ import static org.junit.Assert.*;
 public class SdwnPacketHelperTest
 {
 
-    private List<Integer> goodPacket;
+    private List<Integer> aBuff;
     private List<Integer> malformedPacket = new ArrayList<>();
     private FakeBufferFactory factory = new FakeBufferFactory();
 
     @Before
     public void setUp()
     {
-        goodPacket = factory.createRawDataPacket();
+        aBuff = FakeBufferFactory.createABuffer();
     }
 
+    @Ignore("Validation for packet is deprecated")
     @Test
     public void Test_validation()
     {
-        boolean isvalid = SdwnPacketHelper.validate(goodPacket);
+        boolean isvalid = SdwnPacketHelper.validate(aBuff);
         assertTrue(isvalid);
 
         malformedPacket.add(2);//current validation just check the length(there is no more rule)
@@ -35,21 +37,15 @@ public class SdwnPacketHelperTest
     @Test
     public void test_get_length()
     {
-        assertEquals(goodPacket.size(), SdwnPacketHelper.getLength(goodPacket));
+        assertEquals(aBuff.size(), SdwnPacketHelper.getLength(aBuff));
     }
 
     @Test
     public void Test_getType()
     {
-        SdwnPacketType actType = SdwnPacketHelper.getType(goodPacket);
-        assertEquals(SdwnPacketType.DATA, actType);
+        Packet.Type actType = Packet.Type.DATA;
 
-        //another time for Rule request
-        goodPacket.clear();
-        goodPacket = factory.createRawReportPacket();
-        actType = SdwnPacketHelper.getType(goodPacket);
-
-        assertEquals(SdwnPacketType.REPORT, actType);
+        assertEquals(SdwnPacketHelper.getType(aBuff),actType);
     }
 
     @Test

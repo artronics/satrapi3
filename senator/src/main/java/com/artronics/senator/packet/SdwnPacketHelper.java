@@ -8,6 +8,7 @@ import static com.artronics.senator.packet.Packet.ByteIndex.*;
 
 public final class SdwnPacketHelper
 {
+    @Deprecated
     public static boolean validate(List<Integer> receivedBytes)
     {
         final int length = getLength(receivedBytes);
