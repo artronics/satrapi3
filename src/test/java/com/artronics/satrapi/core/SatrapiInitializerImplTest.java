@@ -12,10 +12,10 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.mockito.Mockito.*;
 
-public class NetworkInitializerImplTest
+public class SatrapiInitializerImplTest
 {
     @InjectMocks
-    NetworkInitializerImpl initializer;
+    SatrapiInitializerImpl initializer;
 
     @Mock
     SdwnNetworkService networkService;

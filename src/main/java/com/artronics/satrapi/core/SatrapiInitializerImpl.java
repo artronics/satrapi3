@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NetworkInitializerImpl implements NetworkInitializer
+public class SatrapiInitializerImpl implements SatrapiInitializer
 {
-    private final static Logger log = Logger.getLogger(NetworkInitializerImpl.class);
+    private final static Logger log = Logger.getLogger(SatrapiInitializerImpl.class);
 
     private SdwnNetwork sdwnNetwork;
 

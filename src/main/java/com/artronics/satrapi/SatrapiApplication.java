@@ -1,7 +1,7 @@
 package com.artronics.satrapi;
 
 import com.artronics.satrapi.core.NetworkFinalizer;
-import com.artronics.satrapi.core.NetworkInitializer;
+import com.artronics.satrapi.core.SatrapiInitializer;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class SatrapiApplication implements
     private final static Logger log = Logger.getLogger(SatrapiApplication.class);
 
     @Autowired
-    private NetworkInitializer initializer;
+    private SatrapiInitializer initializer;
 
     @Autowired
     private NetworkFinalizer finalizer;

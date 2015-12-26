@@ -1,6 +1,6 @@
 package com.artronics.satrapi.core;
 
-public interface NetworkInitializer
+public interface SatrapiInitializer
 {
     void initSdwnNetwork();
 

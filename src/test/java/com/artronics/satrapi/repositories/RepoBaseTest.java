@@ -53,7 +53,7 @@ public class RepoBaseTest
      * (index 0)
      * <p/>
      * CAUTION: Remember during Spring Container inside event we persist a SdwnNetwork associated
-     * with this machine. see NetworkInitializer
+     * with this machine. see SatrapiInitializer
      *
      * @throws Exception
      */
