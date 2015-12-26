@@ -25,6 +25,8 @@ public class SatrapiApplication implements
 
     public static void main(String[] args)
     {
+        log.info("Starting Satrapi...");
+        log.debug("Starting main Context.");
         new SpringApplicationBuilder()
                 .bannerMode(Banner.Mode.OFF)
                 .sources(SatrapiApplication.class)
