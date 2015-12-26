@@ -8,6 +8,16 @@ import static com.artronics.senator.packet.Packet.ByteIndex.*;
 
 public final class SdwnPacketHelper
 {
+    public static int getNetId(List<Integer> content)
+    {
+        return content.get(Packet.ByteIndex.NET_ID.getValue());
+    }
+
+    public static int getSize(List<Integer> content)
+    {
+        return content.get(Packet.ByteIndex.LENGTH.getValue());
+    }
+
     @Deprecated
     public static boolean validate(List<Integer> receivedBytes)
     {
